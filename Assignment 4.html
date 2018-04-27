@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- ITEC 225 Elias Afzalzada
+      Assignment 4 
+      CSS Assignment Template to complete javascript functions       
+      -->
+
+ <head><title>Gillians Ice Cream</title>
+       <meta charset="utf-8" />
+
+
+   <style type="text/css">
+    
+      body   {margin-left:50px;
+              margin-right:50px;
+              font-size:16pt;
+              font-weight:bold;
+             }
+      h3     {border-style:solid; text-align: center;}
+     
+      th  {font-weight:bold;
+              font-size: 20px;
+              padding:0.50em;
+              border-style:solid; border-color:darkBlue; border-width:0.2em;
+              background-color: beige;
+		   color: purple;
+		   text-align: left;
+             }
+	td  {
+              font-size: 18px;
+              padding: 0.50em;
+              border-style: solid; border-color:darkBlue; border-width: 0.2em;
+              background-color: beige;
+		   color: darkBlue;
+		   text-align: left;
+             }
+	.red { color: red; font-size: 1.2em; text-decoration: underline;}
+      caption {font-weight:bold; padding:0.5em; border-style:solid;
+               border-color: darkBlue; border-width:0.1em; background-color: lavender;
+		    color: darkBlue;}
+      #outp     {background-color:lavender; width:20em; margin: auto;}
+      table {border-collapse:collapse;border-style:solid;border-color:purple;border-width:0.2em;}
+   </style>
+  
+   <script type="text/javascript" > 
+  
+   function formValidation(){
+      var nameString = document.getElementById("fn").value;
+      var phoneNumber = document.getElementById("ph").value;
+      var phoneCheck = phoneNumber.search(/^\d{3}-\d{3}-\d{4}$/);
+      var blank = "";
+      var orderTotal;
+      var orderSummary;  
+      
+      if(/^(?=.*[^a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/.test(nameString)){
+        alert("The name you entered " + nameString + " is not in the correct form.\nThe correct form is all alphabetic, no more than 10 letters.\nGo back and fix the name please.");
+      }
+
+      if(phoneCheck != 0){
+        alert("The phone numder you entered " + phoneNumber + " is not in the correct form.\nThe correct form is: nnn-nnn-nnnn.\nPlease go back and fix the phone number please.");
+      }
+      else{
+
+        for(var i = 0; i < myForm.length; i++){
+          if(myForm[i].checked == true){
+            if(myForm[i].value == 2){
+              orderTotal += 2.00;  
+            }
+            if(myForm[i].value == 3){
+              orderTotal += 3.00;  
+            }
+            if(myForm[i].value == 4){
+              orderTotal += 4.00;  
+            }
+            orderSummary += myForm[i].value + "\n";
+          }
+        }
+        
+        document.getElementById("outar").innerHTML = orderSummary + "\n\nOrder Total - $" + orderTotal + "\n\nThank you " + nameString + "!";
+      }
+
+   }
+
+   function clearForm(){
+
+      document.getElementById("outar").innerHTML = blank;
+
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</script>
+</head>
+<body>   
+   <form id = "myForm" action=""  >                     
+    <table>
+     <caption>Gillian's Home Style Ice Cream<br />
+              On-line Order Form </caption>
+     <tr>
+       <td colspan="3"> <span class = "red">1.</span>
+	   <label> Name: 
+           <input type="text" maxlength="10" name="fn" id="fn"  />
+           (all alphabetics max length 10)</label>
+       </td>
+       <th rowspan="12" id="outp"><h3>Order Summary</h3><p id="outar"></p></th>
+     </tr>
+     <tr>
+       <td colspan="3"> <span class = "red">2.</span> 
+	   <label> Phone #:  
+           <input type="text" maxlength="12" name="ph" id="ph" />
+              Format: ddd-ddd-dddd </label>
+       </td>
+     </tr>
+	<tr>
+       <th colspan="3">
+            <span class = "red">3.</span>  Size: Select the size for your Ice Cream cone<br />
+       </th>   
+     </tr>
+     <tr>
+       <td><input type="radio" name="size" id="small" value="2" checked="checked"/>One Scoop - $2.00</td>
+       <td><input type="radio" name="size" id="med" value="3" />Two Scoops - $3.00</td>
+       <td><input type="radio" name="size" id="large" value="4" />Three Scoops - $4.00</td>
+     </tr>
+	 <tr>
+       <th colspan="3">
+           <span class = "red"> 4.</span>  Size: Select your flavor<br />
+       </th>   
+     </tr>
+     <tr>
+       <td><input type="radio" name="flavor" id="vanilla" value="Vanilla" checked="checked"/>Vanilla </td>
+       <td><input type="radio" name="flavor" id="choc" value="Chocolate" />Chocolate</td>
+       <td><input type="radio" name="flavor" id="strawberry" value="Strawberry" />Strawberry</td>
+     </tr>
+	 <tr>
+       <th colspan="3">
+            <span class = "red">5.</span>  Cone: Select the type of cone  <br />
+       </th>   
+     </tr>
+     <tr>
+       <td><input type="radio" name="cone" id="regular" value="Regular" checked="checked"/>Regular </td>
+       <td><input type="radio" name="cone" id="waffle" value="Waffle" />Waffle (extra $ .50)</td>
+       <td><input type="radio" name="cone" id="cup" value="Cup" />Cup</td>
+     </tr>
+	<tr>
+       <th colspan="3">
+           <span class = "red">6.</span>  Toppings: Select the toppings <br />
+       </th>
+     </tr>
+      <tr>
+        <td>
+           <input type="checkbox" name = "allToppings" id="chocSprinkles" value="Chocolate Sprinkles"  />Chocolate Sprinkles ($.25)
+        </td>
+        <td>
+          <input type="checkbox" name = "allToppings" id="mixSprinkles" value="Rainbow Sprinkles" />Rainbow Sprinkles ($0.20)
+        </td>
+        <td>    
+          <input type="checkbox" name = "allToppings" id="oreo" value="Oreo" />Oreo Sprinkles  ($.30)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="checkbox" name = "allToppings" id="heath" value="Heath Bar" />Heath Bar Sprinkles ($0.50)
+        </td>
+        <td>                                              
+           <input type="checkbox" name = "allToppings" id="chocChips" value="Chocolate Chips" />Chocolate Chips ($0.30)
+        </td>
+        <td>
+          <input type="checkbox" name = "allToppings" id="reeses" value="Reeses" />Reeses ($.50)
+        </td>
+     </tr>
+	<tr>
+       <th colspan="3">
+          <input type="button" id = "calculate" value="Calculate Order Price" onclick="formValidation(document.myForm)"/>
+          <input type="reset" value="Clear Form" onclick="clearForm" />
+       </th>
+     </tr>
+  </table>
+  
+</form>
+</body>
+</html>
