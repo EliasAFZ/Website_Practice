@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang ="en">
+   <!-- ITEC 225 Elias Afzalzada
+      Assignment 5 
+      Html file for clientside -->
+   <head>
+      <meta charset="UTF-8">
+      <title>Cafe Umberto Coffee Order Sales</title>
+      <style type="text/css">
+         /* style for all body */
+         body{
+         background-color: #248f8f;
+         }
+         /* styles for all tables */
+         table{
+         margin: 15px;
+         }
+         /* styles for all table border */
+         td, th, table {border: thin solid black;}
+         /* styles for header 3 */
+         h3{ 
+         text-align: center;
+         }
+      </style>
+      <script type="text/javascript">
+         // Clears the entire page
+         function clearForm() {
+            document.getElementById("customerForm").reset();
+            document.getElementById("orderParagraph").innerHTML = '';
+         }
+         //gives a preivew of the order on the page
+         function orderSummary(){
+            var orderSumVar = "Sumatran: " + document.getElementById("Sumatran").value + "<br>" +
+            "\nFrench Roast: " + document.getElementById("French").value + "<br>" +"Caramel Nut Roast: " + document.getElementById("Caramel").value + "<br>" +"Decaf: " + document.getElementById("Decaf").value;
+            document.getElementById("orderParagraph").innerHTML = orderSumVar;
+         }
+         //clientside verification then hands off and sends data to the server if data is good
+         function orderVerify(){
+            var nameString = document.getElementById("customerName").value;
+            var sumaValue = document.getElementById("Sumatran").value;
+            var frenchValue = document.getElementById("French").value;
+            var caramelValue = document.getElementById("Caramel").value;
+            var decafValue = document.getElementById("Decaf").value;
+         
+            if(/^[A-z]+$/.test(nameString)){
+               if(/^[0-9]*$/.test(sumaValue) && /^[0-9]*$/.test(frenchValue) && /^[0-9]*$/.test(caramelValue) && /^[0-9]*$/.test(decafValue)){
+               return true;
+               }
+            }
+            else{
+               alert("Please check your input");
+               return false;
+            }
+         
+         }
+         
+      </script>
+   </head>
+   <body>
+      <!-- form that holds all data -->
+      <form method="POST" action="[EliasAfzalzada]Coffee.php" onsubmit="return orderVerify()">
+         <h1>Welcome to Cafe Umberto Coffee Order Sales</h1>
+         <!-- table for customer name -->
+         <table>
+            <tr>
+               <td>Buyer's Name:</td>
+               <td><input type="text" id="customerName" name="name"> </td>
+            </tr>
+         </table>
+         <!-- table that holds all order info -->
+         <table>
+            <tr>
+               <!-- column headers -->
+               <th> Product </th>
+               <th> Price </th>
+               <th> Quantity </th>
+            </tr>
+            <tr>
+               <!-- table data -->
+               <td> Sumatran Coffee (1 lb.) </td>
+               <td> $10.00 </td>
+               <td> <input type = "text"  id = "Sumatran" name = "Sumatran" size ="1.5" value="0" /> </td>
+            </tr>
+            <tr>
+               <td> French Morning Roast </td>
+               <td> $11.50 </td>
+               <td> <input type = "text"  id = "French" name = "French" size = "1.5" value="0" /> </td>
+            </tr>
+            <tr>
+               <td> Caramel Nut Roast </td>
+               <td> $12.00 </td>
+               <td> <input type = "text"  id = "Caramel" name = "Caramel" size = "1.5" value="0" /></td>
+            </tr>
+            <tr>
+               <td> Decaffeinated Roast </td>
+               
+               <td> $9.50 </td>
+               <td> <input type = "text"  id = "Decaf" name = "Decaf" size = "1.5" value="0" /></td>
+            </tr>
+            <tr>
+               <th colspan="3" id="orderBorder">
+                  <h3>Order Summary:</h3>
+                  <p id="orderParagraph"></p>
+               </th>
+            </tr>
+         </table>
+         <h2>Payement Method</h2>
+         <!-- payment method buttons -->
+         <input type="radio" name="payType" value="Visa" checked> Visa<br>
+         <input type="radio" name="payType" value="Master Card"> Master Card<br>
+         <input type="radio" name="payType" value="Discover"> Discover<br>
+         <input type="radio" name="payType" value="Check"> Check<br><br>
+         <!-- ordersummary, submit and reset buttons to call functions -->
+         <input type = "button"  value = "Order Summary" onclick="orderSummary()" /> 
+         <input type = "submit"  name = "submit_order" value = "Submit Order"/> 
+         <input type = "reset"  value = "Clear Order Form" onclick="clearForm()"/>
+      </form>
+   </body>
+</html>
