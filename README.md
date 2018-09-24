@@ -1,2 +1,2 @@
 # Website_Practice
-Basic website functionality/practice
+Practiced PHP form validation using user inputed data.
